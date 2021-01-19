@@ -122,7 +122,7 @@ function LoginForm({ user, authError, isLoading, isAuthenticated, requestUserLog
       <EuiSpacer size="xl" />
       <NeedAccountLink>
         Need an account? Sign up <Link to="/registration">here</Link>.
-        </NeedAccountLink>
+      </NeedAccountLink>
     </LoginFormWrapper>
   )
 }

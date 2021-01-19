@@ -1,4 +1,3 @@
-
 import React from "react"
 import { connect } from "react-redux"
 import {
@@ -10,6 +9,9 @@ import {
   EuiPageContent,
   EuiPageContentBody,
   EuiPageHeader,
+  EuiButton,
+  EuiFlexItem,
+  EuiFlexGroup,
   EuiPageHeaderSection,
   EuiTitle,
   EuiText
@@ -36,6 +38,9 @@ const StyledEuiPageContentBody = styled(EuiPageContentBody)`
     margin-bottom: 1rem;
   }
 `
+const StyledEuiFlexGroup = styled(EuiFlexGroup)`
+  margin:1px 7px 10px 1px;
+`
 
 function ProfilePage({ user }) {
 
@@ -47,8 +52,29 @@ function ProfilePage({ user }) {
             <EuiTitle size="l">
               <h1>Profile</h1>
             </EuiTitle>
-          </EuiPageHeaderSection>
+            </EuiPageHeaderSection>
         </StyledEuiPageHeader>
+
+            <StyledEuiFlexGroup wrap gutterSize="s" alignItems="center" justifyContent="center">
+              <EuiFlexItem grow={false}>
+                <EuiButton color="text" onClick={() => { }}>
+                  Update Email
+                  </EuiButton>
+              </EuiFlexItem>
+
+              <EuiFlexItem grow={false}>
+                <EuiButton color="text"  onClick={() => { }}>
+                  Update Password
+                </EuiButton>
+              </EuiFlexItem>
+
+              <EuiFlexItem grow={false}>
+                <EuiButton color="text" onClick={() => { }}>
+                  Update Profile
+                </EuiButton>
+              </EuiFlexItem>
+            </StyledEuiFlexGroup>
+
         <EuiPageContent verticalPosition="center" horizontalPosition="center">
           <StyledEuiPageContentBody>
             <EuiAvatar
@@ -68,19 +94,19 @@ function ProfilePage({ user }) {
               <p>
                 <EuiIcon type="clock" /> MEMBER SINCE {moment(user.created_at).format("DD-MM-YYYY")}
               </p>
-              
+
               <EuiHorizontalRule />
 
-              <p> FIRST NAME: {" "} 
+              <p> FIRST NAME: {" "}
                 {user.profile.first_name ? user.profile.first_name : <EuiIcon type="alert" /> + " First name not specified"}
               </p>
 
-              <p> LAST NAME: {" "} 
+              <p> LAST NAME: {" "}
                 {user.profile.last_name ? user.profile.last_name : <EuiIcon type="alert" /> + " Last name not specified"}
               </p>
 
 
-              <p> PHONE NUMBER: {" "} 
+              <p> PHONE NUMBER: {" "}
                 {user.profile.phone_number ? user.profile.phone_number : <EuiIcon type="alert" /> + " No phone number added"}
               </p>
 
@@ -88,19 +114,19 @@ function ProfilePage({ user }) {
 
               <p> LICENCE NUMBER: {" "}
                 {user.profile.licence_number ?
-                 user.profile.licence_number : <EuiIcon type="alert" /> + " No licence number added"}
+                  user.profile.licence_number : <EuiIcon type="alert" /> + " No licence number added"}
               </p>
               <p> LICENCE CATEGORY: {" "}
                 {user.profile.licence_category ?
-                 user.profile.licence_category : <EuiIcon type="alert" /> + " No licence category added"}
+                  user.profile.licence_category : <EuiIcon type="alert" /> + " No licence category added"}
               </p>
               <p> LICENCE EXPIRE DATE: {" "}
                 {moment(user.profile.licence_expire_date).format("DD-MM-YYYY") ?
-                 user.profile.licence_expire_date :<EuiIcon type="alert" /> + " No licence expire date added"}
+                  user.profile.licence_expire_date : <EuiIcon type="alert" /> + " No licence expire date added"}
               </p>
-           
+
               <EuiHorizontalRule />
-            
+
             </EuiText>
           </StyledEuiPageContentBody>
         </EuiPageContent>

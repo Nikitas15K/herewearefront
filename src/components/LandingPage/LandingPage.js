@@ -2,7 +2,6 @@ import React from "react"
 import {
     EuiPage,
     EuiPageBody,
-    EuiPageContent,
     EuiPageContentBody,
     EuiFlexGroup,
     EuiFlexItem,
@@ -10,7 +9,7 @@ import {
 import { Carousel, CarouselTitle } from "../../components"
 import { useCarousel } from "../../hooks/useCarousel"
 import happy from "../../assets/img/happy.jpg"
-import happyInCar from "../../assets/img/forgetoldways.jpg"
+import happyInCar from "../../assets/img/repairyourdayafteranaccident.jpg"
 import carCrashCost from "../../assets/img/carcrashcost.jpg"
 import forgetOldWays from "../../assets/img/forgetoldways.jpg"
 import loveYourCar from "../../assets/img/loveyourcar.jpg"
@@ -29,25 +28,19 @@ const LandingTitle = styled.h1`
 
 `
 
-const StyledEuiPageContent = styled(EuiPageContent)`
-   border-radius: 50%;
-`
 const StyledEuiPageContentBody = styled(EuiPageContentBody)`
-background : #abd544;  
-max-width: 600px;
-  max-height: 400px;
-  & > img {
-    width: 100%;
-  }
+  @media screen and (max-width: 1200px) {
+    width: 50%;
+   }
 `
 
 const carouselItems = [
     { label: "We all love our car", content: <img src={happy} alt="happy" /> },
-    { label: "dorm room", content: <img src={happyInCar} alt="happyInCar" /> },
-    { label: "bedroom", content: <img src={carCrashCost} alt="carCrashCost" /> },
-    { label: "bathroom", content: <img src={forgetOldWays} alt="forgetOldWays" /> },
-    { label: "kitchen", content: <img src={loveYourCar} alt="loveyourcar" /> },
-    { label: "reading room", content: <img src={driver} alt="driver" /> },
+    { label: "Some problems are solved easily", content: <img src={happyInCar} alt="happyInCar" /> },
+    { label: "Send picture of damage", content: <img src={carCrashCost} alt="carCrashCost" /> },
+    { label: "Forget the old slow way", content: <img src={forgetOldWays} alt="forgetOldWays" /> },
+    { label: "When you take care of your car", content: <img src={loveYourCar} alt="loveyourcar" /> },
+    { label: "We can predict the damage", content: <img src={driver} alt="driver" /> },
 ]
 
 export default function LandingPage() {
@@ -56,7 +49,7 @@ export default function LandingPage() {
         <StyledEuiPage style={{
             backgroundImage: `url(${dots})`,
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'left bottom'
+            backgroundPosition: 'left top'
         }}>
             <EuiPageBody component="section">
                 <EuiFlexGroup direction="column" alignItems="center">
@@ -72,15 +65,18 @@ export default function LandingPage() {
 
                 </EuiFlexGroup>
 
-                <EuiFlexGroup direction="rowReverse">
+                <EuiFlexGroup direction="row">
 
-                    <EuiFlexItem style={{ backgroundColor: "#abd544", margin:"3rem 2rem 5rem -2rem" }}>
-                        <CarouselTitle items={carouselItems} current={current} />
+                    <EuiFlexItem>
+                        <StyledEuiPageContentBody>
+                            <Carousel items={carouselItems} current={current} />
+                        </StyledEuiPageContentBody>
                     </EuiFlexItem>
 
                     <EuiFlexItem>
-                        <Carousel items={carouselItems} current={current} />
+                        <CarouselTitle items={carouselItems} current={current} />
                     </EuiFlexItem>
+
 
                 </EuiFlexGroup>
 
