@@ -11,7 +11,7 @@ const CarouselWrapper = styled.div`
   align-items: center;
   min-height: 450px;
   min-width: 450px;
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 651px) {
     min-height: calc(100vw - 25px);
     min-width: calc(100vw - 25px);
   }

@@ -81,6 +81,7 @@ function ProfilePage({ user }) {
               size="xl"
               name={user.profile.first_name || user.username || "Anonymous"}
               initialsLength={2}
+              color="#abd544" 
               imageUrl={user.profile.image}
             />
             <EuiTitle size="l">

@@ -38,14 +38,14 @@ const StyledImg = styled.img`
   margin: 0 0.1rem;
 `
 
-const TimelineLi = styled.li`
+const StyledLi = styled.li`
 list-style-type: none;
 margin: 0 auto;
 padding: 1rem;
 background-color:#abd544;
 
-@media screen and (max-width: 700px) {
-  padding: 0.1rem 1rem 0.1rem 2.5rem;
+@media screen and (max-width: 651px) {
+  padding: 0.1rem 1rem 1rem 2.5rem;
  }
 `
 
@@ -55,7 +55,7 @@ color:white;
 text-align: right;
 padding: 0.1rem 0.2rem 0.7rem 0.5rem;
 font-size: 1.8rem;
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 651px) {
   width:100%;
   padding:0.1rem 0.1rem 0.1rem 0.1rem;
   font-size: 1.2rem;
@@ -69,7 +69,7 @@ export default function CarouselTitle({ items, current }) {
   return (
     <AnimatedTitle>
       <ul>
-        <TimelineLi>
+        <StyledLi>
           <AnimatePresence exitBeforeEnter>
             <AnimatedCarouselTitle>
               {items.map((item, i) => {
@@ -97,34 +97,34 @@ export default function CarouselTitle({ items, current }) {
               <div className="underline" />
             </AnimatedCarouselTitle>
           </AnimatePresence>
-        </TimelineLi>
+        </StyledLi>
 
-        <TimelineLi>
+        <StyledLi>
           <TimelineDiv>
             <StyledImg size="l" src={hereweare} />
             Become a member in HereWeAre services
                 </TimelineDiv>
-        </TimelineLi>
-        <TimelineLi>
+        </StyledLi>
+        <StyledLi>
           <TimelineDiv>
             <StyledImg size="l" src={hereweare} />
             Make your vehicle accident statement fast
            </TimelineDiv>
-        </TimelineLi>
+        </StyledLi>
 
-        <TimelineLi>
+        <StyledLi>
           <TimelineDiv>
             <StyledImg size="l" src={hereweare} />
             Keep history of your vehicle accident statements
                 </TimelineDiv>
-        </TimelineLi>
+        </StyledLi>
 
-        <TimelineLi>
+        <StyledLi>
           <TimelineDiv>
             <StyledImg size="l" src={hereweare} />
             Have a prediction for your vehicle damage
                 </TimelineDiv>
-        </TimelineLi>
+        </StyledLi>
       </ul>
 
 

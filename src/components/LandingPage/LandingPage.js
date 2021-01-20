@@ -12,44 +12,47 @@ import happy from "../../assets/img/happy.jpg"
 import happyInCar from "../../assets/img/repairyourdayafteranaccident.jpg"
 import carCrashCost from "../../assets/img/carcrashcost.jpg"
 import forgetOldWays from "../../assets/img/forgetoldways.jpg"
+import accident from "../../assets/img/accident.jpg"
+import problems from "../../assets/img/problems.jpg"
 import loveYourCar from "../../assets/img/loveyourcar.jpg"
+import stateHere from "../../assets/img/statehere.jpg"
 import driver from "../../assets/img/driver.jpg"
 import dots from "../../assets/img/dots.png"
 import styled from "styled-components"
 
 const StyledEuiPage = styled(EuiPage)`
-  flex: 1;
+    display: flex;
+    background-image: url(${dots});
+    background-repeat: no-repeat;
+    background-position: 'left top';
+
+    @media screen and (max-width: 651px) {
+        background-repeat: repeat;
+      } 
 `
 
 const LandingTitle = styled.h1`
   font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-
-`
-
-const StyledEuiPageContentBody = styled(EuiPageContentBody)`
-  @media screen and (max-width: 1200px) {
-    width: 50%;
-   }
+  text-align:center;
 `
 
 const carouselItems = [
-    { label: "We all love our car", content: <img src={happy} alt="happy" /> },
-    { label: "Some problems are solved easily", content: <img src={happyInCar} alt="happyInCar" /> },
-    { label: "Send picture of damage", content: <img src={carCrashCost} alt="carCrashCost" /> },
-    { label: "Forget the old slow way", content: <img src={forgetOldWays} alt="forgetOldWays" /> },
-    { label: "When you take care of your car", content: <img src={loveYourCar} alt="loveyourcar" /> },
-    { label: "We can predict the damage", content: <img src={driver} alt="driver" /> },
+    { label: "In HereWeAre we think that...", content: <img src={happy} alt="happy" /> },
+    { label: "...when you love your car...", content: <img src={loveYourCar} alt="loveyourcar" /> },
+    { label: "... problems should be solved easily ...", content: <img src={happyInCar} alt="happyInCar" /> },
+    { label: "... don't lose your day ...", content: <img src={problems} alt="problems" /> },
+    { label: "... even when sth does wrong ...", content: <img src={accident} alt="accident" /> },
+    { label: "... forget the old slow ways ...", content: <img src={forgetOldWays} alt="forgetOldWays" /> },
+    { label: " ... state accident in our web app...", content: <img src={stateHere} alt="stateHere" /> },
+    { label: "... take picture of damage ...", content: <img src={carCrashCost} alt="carCrashCost" /> },
+    { label: "... and we predict the damage!", content: <img src={driver} alt="driver" /> },
 ]
 
 export default function LandingPage() {
     const { current } = useCarousel(carouselItems, 3000)
     return (
         <StyledEuiPage style={{
-            backgroundImage: `url(${dots})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'left top'
+
         }}>
             <EuiPageBody component="section">
                 <EuiFlexGroup direction="column" alignItems="center">
@@ -68,19 +71,15 @@ export default function LandingPage() {
                 <EuiFlexGroup direction="row">
 
                     <EuiFlexItem>
-                        <StyledEuiPageContentBody>
+                        <EuiPageContentBody>
                             <Carousel items={carouselItems} current={current} />
-                        </StyledEuiPageContentBody>
+                        </EuiPageContentBody>
                     </EuiFlexItem>
 
                     <EuiFlexItem>
                         <CarouselTitle items={carouselItems} current={current} />
                     </EuiFlexItem>
 
-
-                </EuiFlexGroup>
-
-                <EuiFlexGroup direction="column" alignItems="center">
 
                 </EuiFlexGroup>
 

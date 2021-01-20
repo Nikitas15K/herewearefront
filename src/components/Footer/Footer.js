@@ -1,8 +1,16 @@
 import React from "react"
+import { EuiHorizontalRule } from "@elastic/eui"
 
-export default class Footer extends React.Component{
-    render(){
+import moment from "moment";
+
+export default class Footer extends React.Component {
+    render() {
         return (
-            <p>Copyright &copy; HereWeAre! Website</p>
-);}}
+            <div>
+                <p>Copyright &copy; HereWeAre! {moment().format("YYYY")}</p>
+                <EuiHorizontalRule />
+            </div>
+        );
+    }
+}
 
