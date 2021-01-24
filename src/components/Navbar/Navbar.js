@@ -12,8 +12,8 @@ import {
 } from "@elastic/eui"
 import { Link } from "react-router-dom";
 import loginIcon from "../../assets/img/loginIcon.svg";
-import hereweare from "../../assets/img/hereweare.png";
 import styled from "styled-components";
+
 
 const COLORS = {
   primaryDark: "#abd544",
@@ -52,7 +52,7 @@ const NavBackground = styled.div`
 
 const Icon = styled.span`
   position: relative;
-  background-color: ${(props) => (props.clicked ? "transparent" : "black")};
+  background-color: ${(props) => (props.clicked ? "transparent" : "#abd544")};
   width: 1rem;
   height: 2px;
   display: inline-block;
@@ -61,7 +61,7 @@ const Icon = styled.span`
   &::before,
   &::after {
     content: "";
-    background-color: black;
+    background-color: #abd544;
     width: 1rem;
     height: 2px;
     display: inline-block;
@@ -99,7 +99,7 @@ const Navigation = styled.nav`
 const List = styled.ul`
   position: absolute;
   list-style: none;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -127,20 +127,20 @@ const ItemLink = styled(NavLink)`
     transform: translateX(1rem);
   }
 
-  @media screen and (max-width: 330px) {
+  @media screen and (max-width: 651px) {
     font-size: 2rem;
   } 
 `;
 
 const AvatarMenu = styled.article`
-  display: flex;
-  justify-content: space-around;
-  min-width: 200px;
+  min-width: 20rem;
+  min-height: 1rem;
 `
 
 function Navbar({ user, logUserOut, ...props }) {
+
   const navigate = useNavigate()
-  const [avatarMenuOpen, setAvatarMenuOpen] = React.useState(false);
+  const [avatarMenuOpen, setAvatarMenuOpen] = useState(false);
   const toggleAvatarMenu = () => setAvatarMenuOpen(!avatarMenuOpen);
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
@@ -157,6 +157,7 @@ function Navbar({ user, logUserOut, ...props }) {
   const avatarButton = (
     <EuiHeaderSectionItemButton
       aria-label="User avatar"
+      style={{ marginTop: "2rem" }}
       onClick={() => user?.profile && toggleAvatarMenu()}
     >
       {user?.profile ? (
@@ -164,7 +165,7 @@ function Navbar({ user, logUserOut, ...props }) {
           size="l"
           name={user.profile.full_name || "Anonymous"}
           initialsLength={2}
-          color="#abd544"
+          color="#ffffff"
           imageUrl={user.profile.image}
         />
       ) : (
@@ -179,17 +180,10 @@ function Navbar({ user, logUserOut, ...props }) {
     if (!user?.profile) return null
     return (
       <AvatarMenu>
-        <EuiAvatar
-          size="xl"
-          name={user.profile.full_name || "Anonymous"}
-          initialsLength={2}
-          color="#abd544"
-          imageUrl={user.profile.image}
-        />
         <EuiFlexGroup direction="column" className="avatar-actions">
           <EuiFlexItem grow={1}>
             <p>
-              {user.username}
+              Hello {user.username}
             </p>
           </EuiFlexItem>
           <EuiFlexItem grow={1}>
@@ -235,13 +229,14 @@ function Navbar({ user, logUserOut, ...props }) {
               Estimate Car Damage
             </ItemLink>
           </li>
+
           <li>
             <EuiPopover
+              ownFocus
               id="avatar-menu"
               isOpen={avatarMenuOpen}
-              color="#ffffff"
               closePopover={closeAvatarMenu}
-              anchorPosition="downRight"
+              anchorPosition="downCenter"
               button={avatarButton}
               panelPaddingSize="l"
             >

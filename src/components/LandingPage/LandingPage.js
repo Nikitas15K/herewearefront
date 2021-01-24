@@ -36,12 +36,19 @@ const LandingTitle = styled.h1`
   text-align:center;
 `
 
+const StyledP = styled.div`
+    display: flex;
+    @media screen and (max-width: 500px) {
+        margin-top: -8rem;
+  } 
+`
+
 const carouselItems = [
     { label: "In HereWeAre we think that...", content: <img src={happy} alt="happy" /> },
     { label: "...when you love your car...", content: <img src={loveYourCar} alt="loveyourcar" /> },
     { label: "... problems should be solved easily ...", content: <img src={happyInCar} alt="happyInCar" /> },
     { label: "... don't lose your day ...", content: <img src={problems} alt="problems" /> },
-    { label: "... even when sth does wrong ...", content: <img src={accident} alt="accident" /> },
+    { label: "... even when something does wrong ...", content: <img src={accident} alt="accident" /> },
     { label: "... forget the old slow ways ...", content: <img src={forgetOldWays} alt="forgetOldWays" /> },
     { label: " ... state accident in our web app...", content: <img src={stateHere} alt="stateHere" /> },
     { label: "... take picture of damage ...", content: <img src={carCrashCost} alt="carCrashCost" /> },
@@ -62,7 +69,7 @@ export default function LandingPage() {
 
                     </EuiFlexItem>
 
-                    <EuiFlexItem>
+                    <EuiFlexItem style={{ marginBottom:"2rem" }}>
                         <LandingTitle>After An Accident, Repair Your Day Fast!</LandingTitle>
                     </EuiFlexItem>
 
@@ -70,15 +77,15 @@ export default function LandingPage() {
 
                 <EuiFlexGroup direction="row">
 
-                    <EuiFlexItem>
+                    <EuiFlexItem style={{ zIndex: "300" }}>
                         <EuiPageContentBody>
                             <Carousel items={carouselItems} current={current} />
                         </EuiPageContentBody>
                     </EuiFlexItem>
 
-                    <EuiFlexItem>
+                    <StyledP>
                         <CarouselTitle items={carouselItems} current={current} />
-                    </EuiFlexItem>
+                    </StyledP>
 
 
                 </EuiFlexGroup>

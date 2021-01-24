@@ -14,7 +14,7 @@ const customTheme = {
 const StyledLayout = styled.div`
   width: 100%;
   max-width: 100vw;
-  min-height: 100vh;
+  min-height: 100%;
   background: rgb(224, 228, 234);
   display: flex;
   flex-direction: column;
@@ -35,12 +35,12 @@ export default function Layout({ children }) {
                 <title>Here We Are</title>
                 <link rel="canonical" href="https://hereweare.com" />
             </Helmet>
-            <ThemeProvider theme={customTheme}>
-                <StyledLayout>
-                    <Navbar />
-                    <StyledMain>{children}</StyledMain>
-                </StyledLayout>
-            </ThemeProvider>
+                <ThemeProvider theme={customTheme}>
+                    <StyledLayout>
+                        <Navbar />
+                        <StyledMain>{children}</StyledMain>
+                    </StyledLayout>
+                </ThemeProvider>
         </React.Fragment>
     )
 }

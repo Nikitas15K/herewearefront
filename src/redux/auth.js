@@ -15,6 +15,9 @@ export const REQUEST_USER_SIGN_UP = "@@auth/REQUEST_USER_SIGN_UP"
 export const REQUEST_USER_SIGN_UP_SUCCESS = "@@auth/REQUEST_USER_SIGN_UP_SUCCESS"
 export const REQUEST_USER_SIGN_UP_FAILURE = "@@auth/REQUEST_USER_SIGN_UP_FAILURE"
 
+export const REQUEST_PROFILE_UPDATE = "@@auth/REQUEST_PROFILE_UPDATE"
+export const REQUEST_PROFILE_UPDATE_SUCCESS = "@@auth/REQUEST_PROFILE_UPDATE_SUCCESS"
+export const REQUEST_PROFILE_UPDATE_FAILURE = "@@auth/REQUEST_PROFILE_UPDATE_FAILURE"
 
 export default function authReducer(state = initialState.auth, action = {}) {
   switch (action.type) {
@@ -90,6 +93,27 @@ export default function authReducer(state = initialState.auth, action = {}) {
         isAuthenticated: false,
         error: action.error
       }
+
+    case REQUEST_PROFILE_UPDATE:
+      return {
+        ...state,
+        isUpdating: true,
+      }
+
+    case REQUEST_PROFILE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        isUpdating: false,
+        error: null
+      }
+
+    case REQUEST_PROFILE_UPDATE_FAILURE:
+      return {
+        ...state,
+        isUpdating: false,
+        error: action.error
+      }
+
 
     default:
       return state
@@ -194,4 +218,27 @@ Actions.logUserOut = () => {
   }
 }
 
+Actions.UpdateOwnProfile = ({ first_name, last_name, phone_number, licence_number, licence_category, licence_expire_date }) => {
+  return async (dispatch) =>
+    dispatch(
+      apiClient({
+        url: `/profiles/me`,
+        method: `PUT`,
+        types: {
+          REQUEST: REQUEST_PROFILE_UPDATE,
+          SUCCESS: REQUEST_PROFILE_UPDATE_SUCCESS,
+          FAILURE: REQUEST_PROFILE_UPDATE_FAILURE
+        },
+        options: {
+          data: { profile_update: { first_name, last_name, phone_number, licence_number, licence_category, licence_expire_date } },
+          params: {}
+        },
+        onSuccess: (res) => {
+          dispatch(Actions.fetchUserFromToken(localStorage.getItem("access_token")))
+          return { success: true, status: res.status, data: res.data }
+        },
+        onFailure: (res) => ({ success: false, status: res.status, error: res.error })
+      })
+    )
+}
 

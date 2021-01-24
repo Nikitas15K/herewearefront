@@ -15,7 +15,8 @@ const AnimatedTitle = styled.div`
 }
 `
 const AnimatedCarouselTitle = styled.span`
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  margin-left: 2rem;
   width: 30rem;
   margin: 0 auto;
   color:white;

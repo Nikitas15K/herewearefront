@@ -6,7 +6,8 @@ import moment from "moment";
 export default class Footer extends React.Component {
     render() {
         return (
-            <div>
+            <div style={{height: "100%"}}>
+                <EuiHorizontalRule />
                 <p>Copyright &copy; HereWeAre! {moment().format("YYYY")}</p>
                 <EuiHorizontalRule />
             </div>
