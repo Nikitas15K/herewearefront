@@ -42,4 +42,14 @@ export const formatURLWithQueryParams = (base, params) => {
     const fullURL = `${baseUrl}${endpointPath}`
     return formatURLWithQueryParams(fullURL, params)
   }
+
+  export const vehiclesFormatURL = (url, params) => {
+    const endpointPath = formatAPIPath(url)
+    const baseUrl =
+      process.env.NODE_ENV === "production"
+        ? process.env.REMOVE_SERVER_URL
+        : "http://localhost:8001/api"
+    const fullURL = `${baseUrl}${endpointPath}`
+    return formatURLWithQueryParams(fullURL, params)
+  }
   

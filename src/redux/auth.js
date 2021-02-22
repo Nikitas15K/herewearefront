@@ -1,5 +1,6 @@
 import initialState from "./initialState"
 import axios from "axios"
+import { Actions as vehicleActions } from "./vehicles"
 import apiClient from "../services/apiClient"
 
 export const REQUEST_LOGIN = "@@auth/REQUEST_LOGIN"
@@ -188,28 +189,51 @@ Actions.registerNewUser = ({ username, email, password }) => {
     )
 }
 
-Actions.fetchUserFromToken = (access_token) => {
-  return async (dispatch) => {
-    dispatch({ type: FETCHING_USER_FROM_TOKEN })
-    const token = access_token ? access_token : localStorage.getItem("access_token")
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`
-    }
-    try {
-      const res = await axios({
+Actions.fetchUserFromToken = () => {
+  return async (dispatch) =>
+    dispatch(
+      apiClient({
+        url: `/users/me`,
         method: `GET`,
-        url: `http://localhost:8000/api/users/me/`,
-        headers
-      })
-      console.log(res)
-      return dispatch({ type: FETCHING_USER_FROM_TOKEN_SUCCESS, data: res.data })
-    } catch (error) {
-      console.log(error)
-      return dispatch({ type: FETCHING_USER_FROM_TOKEN_FAILURE, error })
-    }
-  }
+        types: {
+          REQUEST: FETCHING_USER_FROM_TOKEN,
+          SUCCESS: FETCHING_USER_FROM_TOKEN_SUCCESS,
+          FAILURE: FETCHING_USER_FROM_TOKEN_FAILURE
+        },
+        options: {
+          data: {},
+          params: {},
+        },
+        onSuccess: (res) => {
+          dispatch(vehicleActions.fetchAllUserVehicles())
+          return { success: true, status: res.status, data: res.data }
+          
+        },})
+    )
 }
+
+// Actions.fetchUserFromToken = (access_token) => {
+//   return async (dispatch) => {
+//     dispatch({ type: FETCHING_USER_FROM_TOKEN })
+//     const token = access_token ? access_token : localStorage.getItem("access_token")
+//     const headers = {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`
+//     }
+//     try {
+//       const res = await axios({
+//         method: `GET`,
+//         url: `http://localhost:8000/api/users/me/`,
+//         headers
+//       })
+//       console.log(res)
+//       return dispatch({ type: FETCHING_USER_FROM_TOKEN_SUCCESS, data: res.data })
+//     } catch (error) {
+//       console.log(error)
+//       return dispatch({ type: FETCHING_USER_FROM_TOKEN_FAILURE, error })
+//     }
+//   }
+// }
 
 Actions.logUserOut = () => {
   localStorage.removeItem("access_token")

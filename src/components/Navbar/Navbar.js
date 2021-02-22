@@ -200,6 +200,7 @@ function Navbar({ user, logUserOut, ...props }) {
       </AvatarMenu>
     )
   }
+
   return (
     <>
       <MenuLabel htmlFor="navi-toggle" onClick={handleClick}>
@@ -215,17 +216,17 @@ function Navbar({ user, logUserOut, ...props }) {
             </ItemLink>
           </li>
           <li>
-            <ItemLink onClick={handleClick} to="/about">
-              State Vehicle Accident
+            <ItemLink onClick={handleClick} to="/vehicles/">
+              Add Vehicle 
             </ItemLink>
           </li>
           <li>
-            <ItemLink onClick={handleClick} to="/portfolio">
+            <ItemLink onClick={handleClick} to="/accident/">
               Declare Vehicle Accident
             </ItemLink>
           </li>
           <li>
-            <ItemLink onClick={handleClick} to="/blog">
+            <ItemLink onClick={handleClick} to="/damage/">
               Estimate Car Damage
             </ItemLink>
           </li>

@@ -3,6 +3,13 @@ export default {
     isLoading: false,
     isUpdating: false,
     error: false,
-    user: {}
+    user: {},
+  },
+  vehicles: {
+    isLoading: false,
+    isUpdating: false,
+    error: null,
+    data: {},
+    currentVehicle: null
   }
 }

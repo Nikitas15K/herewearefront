@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import ProfileData from "./ProfileData"
-import UpdateUserData from "./UpdateUserData"
+import ProfileData from "../ProfileData/ProfileData"
+import ProfileUpdate from "../ProfileUpdate/ProfileUpdate"
 import {
   EuiAvatar,
   EuiHorizontalRule,
@@ -71,7 +71,7 @@ function ProfilePage({ user }) {
                 </EuiButton>
           </EuiFlexItem>
 
-          <UpdateUserData />
+          <ProfileUpdate />
           
         </StyledEuiFlexGroup>
         <EuiPageContent verticalPosition="center" horizontalPosition="center">

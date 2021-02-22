@@ -18,7 +18,7 @@ import validation from "../../utils/validation";
 import { extractErrorMessages } from "../../utils/errors";
 
 
-function UpdateUserData({ user, authError, isUpdating, isAuthenticated, UpdateUserProfileData }) {
+function ProfileUpdate({ user, authError, isUpdating, isAuthenticated, UpdateUserProfileData }) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
   const [form, setForm] = React.useState({
     first_name: "",
@@ -51,7 +51,13 @@ function UpdateUserData({ user, authError, isUpdating, isAuthenticated, UpdateUs
     setForm((form) => ({ ...form, [label]: value }))
   };
 
+  const onButtonClick = () => {
+    setIsPopoverOpen(!isPopoverOpen)
+  }
 
+  const closePopover = () => {
+    setIsPopoverOpen(false)
+  }
 
   const handlePhoneChange = (label, value) => {
     setErrors((errors) => ({
@@ -85,14 +91,14 @@ function UpdateUserData({ user, authError, isUpdating, isAuthenticated, UpdateUs
       return
     }
 
-    if (!Date.parse(form.licence_expire_date) || Date(form.licence_expire_date) < Date.now()) {
+    if (!Date.parse(form.licence_expire_date) || Date.parse(form.licence_expire_date) < Date.now()) {
       setErrors((errors) => ({ ...errors, form: `Date should be after today and written like YYYY-MM-DD.` }))
       return
     }
 
     setHasSubmitted(true)
 
-    const actionUp = await UpdateUserProfileData({
+     const actionUp = await UpdateUserProfileData({
       first_name: form.first_name,
       last_name: form.last_name,
       phone_number: form.phone_number,
@@ -101,10 +107,11 @@ function UpdateUserData({ user, authError, isUpdating, isAuthenticated, UpdateUs
       licence_expire_date: form.licence_expire_date
     }
     )
-    if (actionUp.success) {
-      navigate("/profile")
-    }
 
+    if (actionUp.success) {
+      // redirect user to updated cleaning job post
+      closePopover()
+    }
   }
 
   const getFormErrors = () => {
@@ -118,13 +125,6 @@ function UpdateUserData({ user, authError, isUpdating, isAuthenticated, UpdateUs
     return formErrors
   }
 
-  const onButtonClick = () => {
-    setIsPopoverOpen(!isPopoverOpen)
-  }
-
-  const closePopover = () => {
-    setIsPopoverOpen(false)
-  }
 
 
   const button = (
@@ -235,7 +235,7 @@ function UpdateUserData({ user, authError, isUpdating, isAuthenticated, UpdateUs
     </EuiFormRow>
     <EuiSpacer />
 
-    <EuiButton type="submit" isLoading={isUpdating} onClick={closePopover} fill>
+    <EuiButton type="submit" isLoading={isUpdating} fill>
       Update Profile
     </EuiButton>
   </EuiForm>);
@@ -264,4 +264,4 @@ export default connect(
   {
     UpdateUserProfileData: authActions.UpdateOwnProfile
   }
-)(UpdateUserData)
+)(ProfileUpdate)
